@@ -1,0 +1,51 @@
+title: "The Empty Vessel"
+description: "Evidence-based reflections and personal thoughts"
+url: "https://theemptyvessel.github.io"
+
+masthead_title: "The Empty Vessel"
+subtitle: "Thoughts, Code & Craft"
+logo: "/assets/images/logo.png"
+
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: default
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Show drafts during development
+show_drafts: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Custom CSS is injected via head/custom.html
+custom_css:
+  - assets/css/custom.css
+
+# Header nav pages
+header_pages:
+  - about.markdown
+  - blog.md
+  - contact.md
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      show_date: true
+      read_time: true
+
+footer:
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:theemptyvessel963@gmail.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/TheEmptyVessel963"

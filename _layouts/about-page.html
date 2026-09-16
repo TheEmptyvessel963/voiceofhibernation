@@ -1,0 +1,66 @@
+---
+layout: default
+---
+
+{%- assign locale = page.locale | default: layout.locale | default: site.locale %}
+
+<section class="about-page">
+    <!-- About Hero -->
+    <div class="about-hero">
+        <div class="about-hero__ornament">☯</div>
+        <div class="section-tag">The Author</div>
+        <h1 class="about-hero__title">About <span class="hero-gradient-text">The Empty Vessel</span></h1>
+    </div>
+
+    <!-- About Content -->
+    <div class="about-content-grid">
+        <div class="about-content__main">
+            <div class="about-card">
+                {{ content }}
+            </div>
+        </div>
+
+        <aside class="about-sidebar">
+            <!-- Quick Facts -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-widget__title">✦ Quick Facts</h3>
+                <ul class="facts-list">
+                    <li><span class="facts-icon">📝</span> {{ site.posts | size }} posts written</li>
+                    <li><span class="facts-icon">📚</span> Evidence-based writing</li>
+                    <li><span class="facts-icon">🌐</span> Est. 2026</li>
+                    <li><span class="facts-icon">💡</span> Curious by nature</li>
+                </ul>
+            </div>
+
+            <!-- Topics -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-widget__title">🔖 Topics</h3>
+                <div class="topics-cloud">
+                    {% for category in site.categories %}
+                    <a href="#" class="topic-chip">{{ category[0] }} <span>{{ category[1].size }}</span></a>
+                    {% endfor %}
+                    {% if site.categories.size == 0 %}
+                    <span class="topic-chip">philosophy</span>
+                    <span class="topic-chip">science</span>
+                    <span class="topic-chip">reflections</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Connect -->
+            <div class="sidebar-widget sidebar-widget--connect">
+                <h3 class="sidebar-widget__title">🔗 Connect</h3>
+                <div class="connect-links">
+                    <a href="mailto:theemptyvessel963@gmail.com" class="connect-link">
+                        <span class="connect-link__icon">✉</span>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://github.com/TheEmptyVessel963" class="connect-link" target="_blank" rel="noopener">
+                        <span class="connect-link__icon">⌥</span>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>

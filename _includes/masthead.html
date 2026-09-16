@@ -1,0 +1,40 @@
+<header class="site-header">
+  <div class="masthead">
+    <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+
+      <div class="site-branding">
+        <a class="site-logo-link" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+          <img src="{{ '/assets/images/theme.png' | relative_url }}" alt="Logo" class="site-logo-img">
+        </a>
+        <a class="site-title" href="{{ '/' | relative_url }}">
+          {{ site.masthead_title | default: site.title }}
+          {% if site.subtitle %}
+          <span class="site-subtitle">{{ site.subtitle }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+      <ul class="visible-links">
+        {% for link in site.data.navigation.main %}
+        {% assign page_url = page.url | remove_first: "/" %}
+        {% assign link_url = link.url | remove_first: "/" %}
+        <li class="masthead__menu-item">
+          <a href="{{ link.url | relative_url }}" {% if page.url==link.url %}aria-current="page" class="active" {% endif
+            %}>
+            {{ link.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <button class="greedy-nav__toggle hidden" type="button">
+        <span class="visually-hidden">Toggle menu</span>
+        <div class="hamburger-icon">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+
+      <ul class="hidden-links hidden"></ul>
+    </nav>
+  </div>
+</header>
