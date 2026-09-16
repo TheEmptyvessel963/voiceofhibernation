@@ -1,0 +1,7 @@
+[build]
+  base = "myblog"
+  publish = "myblog/_site"
+  command = "bundle exec jekyll build"
+
+[build.environment]
+  RUBY_VERSION = "4.0.4"
