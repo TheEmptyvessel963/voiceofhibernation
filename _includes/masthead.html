@@ -1,40 +1,123 @@
 <header class="site-header">
   <div class="masthead">
-    <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
 
-      <div class="site-branding">
-        <a class="site-logo-link" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
-          <img src="{{ '/assets/images/theme.png' | relative_url }}" alt="Logo" class="site-logo-img">
-        </a>
-        <a class="site-title" href="{{ '/' | relative_url }}">
-          {{ site.masthead_title | default: site.title }}
-          {% if site.subtitle %}
-          <span class="site-subtitle">{{ site.subtitle }}</span>
-          {% endif %}
-        </a>
-      </div>
+    <!-- Branding: Logo + Site Title -->
+    <div class="site-branding">
+      <a class="site-logo-link" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+        <img src="{{ '/assets/images/theme.png' | relative_url }}" alt="Logo" class="site-logo-img">
+      </a>
+      <a class="site-title" href="{{ '/' | relative_url }}">
+        {{ site.masthead_title | default: site.title }}
+        {% if site.subtitle %}
+        <span class="site-subtitle">{{ site.subtitle }}</span>
+        {% endif %}
+      </a>
+    </div>
 
-      <ul class="visible-links">
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <ul class="nav-links">
         {% for link in site.data.navigation.main %}
-        {% assign page_url = page.url | remove_first: "/" %}
-        {% assign link_url = link.url | remove_first: "/" %}
-        <li class="masthead__menu-item">
-          <a href="{{ link.url | relative_url }}" {% if page.url==link.url %}aria-current="page" class="active" {% endif
-            %}>
+        <li>
+          <a href="{{ link.url | relative_url }}"
+             {% if page.url == link.url %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>
             {{ link.title }}
           </a>
         </li>
         {% endfor %}
       </ul>
-
-      <button class="greedy-nav__toggle hidden" type="button">
-        <span class="visually-hidden">Toggle menu</span>
-        <div class="hamburger-icon">
-          <span></span><span></span><span></span>
-        </div>
-      </button>
-
-      <ul class="hidden-links hidden"></ul>
     </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
   </div>
 </header>
+
+<!-- Mobile Nav Overlay Backdrop -->
+<div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+
+<!-- Mobile Navigation Drawer -->
+<nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="mobile-drawer__header">
+    <a class="site-title mobile-drawer__title" href="{{ '/' | relative_url }}">
+      {{ site.masthead_title | default: site.title }}
+    </a>
+    <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close navigation menu">
+      <span>✕</span>
+    </button>
+  </div>
+
+  <ul class="mobile-nav-links">
+    {% for link in site.data.navigation.main %}
+    <li>
+      <a href="{{ link.url | relative_url }}"
+         {% if page.url == link.url %}aria-current="page" class="mobile-nav-link active"{% else %}class="mobile-nav-link"{% endif %}>
+        {{ link.title }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div class="mobile-drawer__footer">
+    <p>{{ site.subtitle }}</p>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    var btn = document.getElementById('mobileMenuBtn');
+    var closeBtn = document.getElementById('mobileCloseBtn');
+    var drawer = document.getElementById('mobileDrawer');
+    var overlay = document.getElementById('mobileOverlay');
+
+    function openMenu() {
+      drawer.classList.add('is-open');
+      overlay.classList.add('is-visible');
+      btn.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      overlay.setAttribute('aria-hidden', 'false');
+      btn.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      drawer.classList.remove('is-open');
+      overlay.classList.remove('is-visible');
+      btn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      overlay.setAttribute('aria-hidden', 'true');
+      btn.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', function () {
+      if (drawer.classList.contains('is-open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+
+    // Close drawer if window resizes to desktop
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768 && drawer.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  })();
+</script>
