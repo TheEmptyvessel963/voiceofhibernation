@@ -5,4 +5,5 @@
 
 
 [build.environment]
-  RUBY_VERSION = "3.3.0"
+  RUBY_VERSION = "3.2.2"
+  JEKYLL_VERSION = "4.4.1"
