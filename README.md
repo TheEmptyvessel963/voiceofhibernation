@@ -14,8 +14,14 @@ graph LR
     C --> E[5. Netlify Auto-Deploy]
 ```
 
-### 1️⃣ Make Edits
+### 1️⃣ Make Edits & Preview Locally
 Edit markdown files, posts in `_posts/`, layout files in `_layouts/`, or styles in `_sass/` / `assets/`.
+
+To test locally with live reload:
+```powershell
+.\serve.ps1
+```
+*(For detailed Ruby configuration and paths, see [WORKFLOW.md](WORKFLOW.md).)*
 
 ---
 

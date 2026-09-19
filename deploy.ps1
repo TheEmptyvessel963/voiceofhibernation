@@ -11,7 +11,7 @@ param (
 )
 
 Write-Host "=========================================" -ForegroundColor Cyan
-Write-Host "🚀 Starting Deployment Workflow" -ForegroundColor Cyan
+Write-Host "[DEPLOY] Starting Deployment Workflow" -ForegroundColor Cyan
 Write-Host "=========================================" -ForegroundColor Cyan
 
 # Step 1: Check Git Status
@@ -27,7 +27,7 @@ Write-Host "`n3. Committing changes with message: '$Message'..." -ForegroundColo
 git commit -m "$Message"
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "ℹ️ No changes to commit, proceeding to push check..." -ForegroundColor Gray
+    Write-Host "No changes to commit, proceeding to push check..." -ForegroundColor Gray
 }
 
 # Step 4: Push to GitHub (Triggers Netlify Auto-Deploy)
@@ -36,9 +36,9 @@ git push origin main
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "`n=========================================" -ForegroundColor Green
-    Write-Host "✅ SUCCESS! Pushed to GitHub." -ForegroundColor Green
-    Write-Host "🌐 Netlify is now automatically building & deploying your site!" -ForegroundColor Green
+    Write-Host "[SUCCESS] Pushed to GitHub." -ForegroundColor Green
+    Write-Host "Netlify is now automatically building and deploying your site!" -ForegroundColor Green
     Write-Host "=========================================" -ForegroundColor Green
 } else {
-    Write-Host "`n❌ Error: Failed to push to GitHub. Please check network/permissions." -ForegroundColor Red
+    Write-Host "`n[ERROR] Failed to push to GitHub. Please check network/permissions." -ForegroundColor Red
 }
