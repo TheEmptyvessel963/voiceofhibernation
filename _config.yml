@@ -21,6 +21,18 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# Exclude non-web assets and scripts from _site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - WORKFLOW.md
+  - deploy.ps1
+  - serve.ps1
+  - netlify.toml
+  - vendor/
+  - .github/
+
 # Custom CSS is injected via head/custom.html
 custom_css:
   - assets/css/custom.css
