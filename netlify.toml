@@ -4,4 +4,4 @@
 
 
 [build.environment]
-  RUBY_VERSION = "4.0.4"
+  RUBY_VERSION = "3.3.0"
